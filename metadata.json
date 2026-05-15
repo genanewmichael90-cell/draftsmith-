@@ -1,0 +1,8 @@
+{
+  "name": "Humanize Essay Writer",
+  "description": "A clever essay drafting tool that produces human-like, natural-sounding essays with subtle academic nuance and optional creative imperfections.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
