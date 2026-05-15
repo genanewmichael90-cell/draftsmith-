@@ -114,12 +114,12 @@ export default function App() {
   return (
     <div className="h-screen w-full bg-[#FAF9F6] text-[#1A1A1A] font-sans flex flex-col overflow-hidden selection:bg-[#E2DED0]">
       {/* Header */}
-      <header className="flex justify-between items-center px-10 py-6 border-b border-[#E0DED7] bg-[#FAF9F6] z-10">
+      <header className="flex justify-between items-center px-6 md:px-10 py-4 md:py-6 border-b border-[#E0DED7] bg-[#FAF9F6] z-10 shrink-0">
         <div className="flex flex-col">
-          <span className="text-[10px] uppercase tracking-[0.2em] font-semibold text-[#8C8A82]">The Craft of Writing</span>
-          <h1 className="text-3xl font-display italic tracking-tight cursor-pointer" onClick={() => { setEssayResult(''); setErrorMessage(''); setShowHistory(false); }}>Draftsmith</h1>
+          <span className="text-[9px] md:text-[10px] uppercase tracking-[0.2em] font-semibold text-[#8C8A82]">The Craft of Writing</span>
+          <h1 className="text-2xl md:text-3xl font-display italic tracking-tight cursor-pointer" onClick={() => { setEssayResult(''); setErrorMessage(''); setShowHistory(false); }}>Draftsmith</h1>
         </div>
-        <nav className="hidden md:flex gap-8 text-[10px] uppercase tracking-[0.3em] font-bold">
+        <nav className="flex gap-4 md:gap-8 text-[9px] md:text-[10px] uppercase tracking-[0.3em] font-bold">
           <button 
             onClick={() => setShowHistory(false)} 
             className={`${!showHistory ? 'border-b border-black' : 'text-[#8C8A82]'} pb-1 transition-colors`}
@@ -135,17 +135,17 @@ export default function App() {
         </nav>
       </header>
 
-      <main className="flex-1 flex overflow-hidden">
+      <main className="flex-1 flex flex-col md:flex-row overflow-y-auto md:overflow-hidden">
         {/* Sidebar */}
-        <aside className="w-[400px] border-r border-[#E0DED7] flex flex-col p-10 bg-[#F4F2EE] overflow-y-auto scrollbar-hide">
-          <div className="mb-10 text-center md:text-left">
-            <h2 className="text-[11px] uppercase tracking-[0.2em] font-bold mb-4 text-[#8C8A82]">01. Academic Level</h2>
+        <aside className="w-full md:w-[380px] lg:w-[420px] border-b md:border-b-0 md:border-r border-[#E0DED7] flex flex-col p-6 md:p-10 bg-[#F4F2EE] shrink-0 md:overflow-y-auto scrollbar-hide">
+          <div className="mb-8 md:mb-10 text-center md:text-left">
+            <h2 className="text-[10px] md:text-[11px] uppercase tracking-[0.2em] font-bold mb-4 text-[#8C8A82]">01. Academic Level</h2>
             <div className="grid grid-cols-2 gap-2">
               {['University', 'College', 'High School', 'General'].map((l) => (
                 <button
                   key={l}
                   onClick={() => setLevel(l as EssayLevel)}
-                  className={`px-4 py-3 text-[10px] uppercase tracking-widest border transition-all duration-200
+                  className={`px-3 py-2.5 md:px-4 md:py-3 text-[9px] md:text-[10px] uppercase tracking-widest border transition-all duration-200
                     ${level === l 
                       ? 'bg-black text-white border-black shadow-lg scale-[1.02]' 
                       : 'border-[#D1CFCA] hover:border-black text-[#1A1A1A] hover:bg-white'}`}
@@ -156,9 +156,9 @@ export default function App() {
             </div>
           </div>
 
-          <div className="mb-10 flex-1">
-            <h2 className="text-[11px] uppercase tracking-[0.2em] font-bold mb-4 text-[#8C8A82]">02. The Brief</h2>
-            <div className="space-y-6">
+          <div className="mb-8 md:mb-10 md:flex-1">
+            <h2 className="text-[10px] md:text-[11px] uppercase tracking-[0.2em] font-bold mb-4 text-[#8C8A82]">02. The Brief</h2>
+            <div className="space-y-4 md:space-y-6">
               <div>
                 <label className="text-[9px] uppercase tracking-widest text-[#8C8A82] mb-1 block font-bold">Title / Topic</label>
                 <input 
@@ -172,7 +172,7 @@ export default function App() {
               <div>
                 <label className="text-[9px] uppercase tracking-widest text-[#8C8A82] mb-1 block font-bold">Contextual Notes</label>
                 <textarea 
-                  className="w-full h-32 bg-transparent border border-[#D1CFCA] p-4 text-sm font-serif focus:outline-none focus:border-black resize-none"
+                  className="w-full h-24 md:h-32 bg-transparent border border-[#D1CFCA] p-3 md:p-4 text-sm font-serif focus:outline-none focus:border-black resize-none"
                   placeholder="Provide context, thesis points, or specific requirements..."
                   value={instructions}
                   onChange={(e) => setInstructions(e.target.value)}
@@ -190,7 +190,7 @@ export default function App() {
                       <button 
                         key={i} 
                         onClick={() => setTitle(s)}
-                        className="text-[11px] font-serif italic text-[#8C8A82] hover:text-black block text-left truncate w-full"
+                        className="text-[10px] md:text-[11px] font-serif italic text-[#8C8A82] hover:text-black block text-left truncate w-full py-1"
                       >
                         — {s}
                       </button>
@@ -201,10 +201,10 @@ export default function App() {
             </div>
           </div>
 
-          <div className="mb-10">
-            <h2 className="text-[11px] uppercase tracking-[0.2em] font-bold mb-4 text-[#8C8A82]">03. Constraints</h2>
+          <div className="mb-8 md:mb-10">
+            <h2 className="text-[10px] md:text-[11px] uppercase tracking-[0.2em] font-bold mb-4 text-[#8C8A82]">03. Constraints</h2>
             <div className="flex justify-between items-center mb-3">
-              <span className="text-[10px] uppercase tracking-widest font-bold">Word Count Target</span>
+              <span className="text-[9px] md:text-[10px] uppercase tracking-widest font-bold">Word Count Target</span>
               <span className="font-serif italic text-sm">{wordCount.toLocaleString()} words</span>
             </div>
             <input 
@@ -223,14 +223,14 @@ export default function App() {
             >
               <div className={`w-4 h-4 border border-black transition-colors ${addHumanTone ? 'bg-black' : 'bg-transparent'}`}>
               </div>
-              <span className="text-[10px] uppercase tracking-widest font-bold group-hover:text-black transition-colors">Add human tone (0% AI)</span>
+              <span className="text-[9px] md:text-[10px] uppercase tracking-widest font-bold group-hover:text-black transition-colors">Add human tone (0% AI)</span>
             </button>
           </div>
 
           <button 
             disabled={isGenerating || !level || !title}
             onClick={() => { setShowHistory(false); handleGenerate(); }}
-            className="w-full py-5 bg-black text-white text-[11px] uppercase tracking-[0.3em] font-bold hover:opacity-90 disabled:opacity-30 disabled:cursor-not-allowed transition-all flex items-center justify-center gap-3 shadow-xl hover:translate-y-[-2px] active:translate-y-[0px]"
+            className="w-full py-4 md:py-5 bg-black text-white text-[10px] md:text-[11px] uppercase tracking-[0.3em] font-bold hover:opacity-90 disabled:opacity-30 disabled:cursor-not-allowed transition-all flex items-center justify-center gap-3 shadow-xl hover:translate-y-[-2px] active:translate-y-[0px] mb-4 md:mb-0"
           >
             {isGenerating ? <Loader2 className="w-3 h-3 animate-spin"/> : null}
             {isGenerating ? 'Intelligence Drafting...' : 'Generate Essay'}
@@ -238,7 +238,7 @@ export default function App() {
         </aside>
 
         {/* Viewport */}
-        <section className="flex-1 flex flex-col p-12 bg-white relative overflow-y-auto">
+        <section className="flex-1 flex flex-col p-6 md:p-12 lg:p-16 bg-white relative md:overflow-y-auto">
           <AnimatePresence mode="wait">
             {showHistory ? (
               <motion.div
@@ -248,9 +248,9 @@ export default function App() {
                 exit={{ opacity: 0, x: -20 }}
                 className="max-w-[720px] mx-auto w-full"
               >
-                <div className="mb-12 border-b border-[#E0DED7] pb-6">
-                  <h2 className="text-3xl font-display italic">Manuscript History</h2>
-                  <p className="text-xs text-[#8C8A82] mt-2 uppercase tracking-widest">Your previously drafted works</p>
+                <div className="mb-8 md:mb-12 border-b border-[#E0DED7] pb-6">
+                  <h2 className="text-2xl md:text-3xl font-display italic">Manuscript History</h2>
+                  <p className="text-[10px] text-[#8C8A82] mt-2 uppercase tracking-widest">Your previously drafted works</p>
                 </div>
 
                 {history.length === 0 ? (
@@ -258,23 +258,24 @@ export default function App() {
                     <p className="font-serif italic text-[#8C8A82]">No scripts found in the archives.</p>
                   </div>
                 ) : (
-                  <div className="grid grid-cols-1 gap-6">
+                  <div className="grid grid-cols-1 gap-4 md:gap-6">
                     {history.map((item, idx) => (
                       <div 
                         key={idx} 
-                        className="group bg-[#F4F2EE] p-8 border border-[#E0DED7] hover:border-black transition-all cursor-pointer"
+                        className="group bg-[#F4F2EE] p-6 md:p-8 border border-[#E0DED7] hover:border-black transition-all cursor-pointer"
                         onClick={() => {
                           setTitle(item.title);
                           setEssayResult(item.content);
                           setLevel(item.level as EssayLevel);
                           setShowHistory(false);
+                          window.scrollTo({ top: 0, behavior: 'smooth' });
                         }}
                       >
                         <div className="flex justify-between items-start mb-4">
-                          <span className="text-[9px] uppercase tracking-widest font-bold text-[#8C8A82]">{item.date}</span>
-                          <span className="text-[9px] uppercase tracking-widest font-bold bg-white px-2 py-1 border border-[#E0DED7]">{item.level}</span>
+                          <span className="text-[8px] md:text-[9px] uppercase tracking-widest font-bold text-[#8C8A82]">{item.date}</span>
+                          <span className="text-[8px] md:text-[9px] uppercase tracking-widest font-bold bg-white px-2 py-1 border border-[#E0DED7]">{item.level}</span>
                         </div>
-                        <h3 className="text-xl font-serif mb-4 group-hover:italic transition-all">{item.title}</h3>
+                        <h3 className="text-lg md:text-xl font-serif mb-4 group-hover:italic transition-all">{item.title}</h3>
                         <p className="text-sm text-[#8C8A82] line-clamp-2 font-serif italic mb-6 leading-relaxed">
                           {item.content}
                         </p>
@@ -292,18 +293,18 @@ export default function App() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                className="flex-1 flex flex-col items-center justify-center text-center space-y-4"
+                className="flex-1 flex flex-col items-center justify-center text-center space-y-4 py-20"
               >
-                <div className="w-16 h-[1px] bg-black animate-pulse mb-4"></div>
-                <span className="text-[10px] uppercase tracking-[0.4em] font-bold text-[#1A1A1A]">Calibrating Intelligence</span>
-                <p className="font-serif italic text-sm text-[#8C8A82] animate-pulse">Scanning academic databases & refining tone...</p>
+                <div className="w-12 md:w-16 h-[1px] bg-black animate-pulse mb-4"></div>
+                <span className="text-[9px] md:text-[10px] uppercase tracking-[0.4em] font-bold text-[#1A1A1A]">Calibrating Intelligence</span>
+                <p className="font-serif italic text-xs md:text-sm text-[#8C8A82] animate-pulse">Scanning academic databases & refining tone...</p>
               </motion.div>
             ) : errorMessage ? (
               <motion.div 
                 key="error"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                className="flex-1 flex flex-col items-center justify-center text-center space-y-6"
+                className="flex-1 flex flex-col items-center justify-center text-center space-y-6 py-20"
               >
                 <div className="w-12 h-[1px] bg-red-500 mb-4"></div>
                 <span className="text-[10px] uppercase tracking-[0.3em] font-bold text-red-500">System Overload</span>
@@ -324,10 +325,10 @@ export default function App() {
                 animate={{ opacity: 1, y: 0 }}
                 className="max-w-[680px] mx-auto w-full pb-20"
               >
-                <div className="mb-16 text-center">
-                  <span className="text-xs font-serif italic text-[#8C8A82]">Manuscript Draft</span>
-                  <h3 className="text-4xl font-serif leading-tight mt-6 text-[#1A1A1A] max-w-[500px] mx-auto">{title}</h3>
-                  <div className="h-[1px] w-12 bg-black mx-auto mt-8 opacity-30"></div>
+                <div className="mb-10 md:mb-16 text-center">
+                  <span className="text-[10px] md:text-xs font-serif italic text-[#8C8A82]">Manuscript Draft</span>
+                  <h3 className="text-2xl md:text-4xl font-serif leading-tight mt-4 md:mt-6 text-[#1A1A1A] max-w-[500px] mx-auto">{title}</h3>
+                  <div className="h-[1px] w-12 bg-black mx-auto mt-6 md:mt-8 opacity-30"></div>
                 </div>
 
                 <div className="flex justify-end mb-8 sticky top-0 bg-white/80 py-2 backdrop-blur-sm z-20">
