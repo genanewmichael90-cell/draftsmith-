@@ -144,6 +144,7 @@ export default function App() {
               {['University', 'College', 'High School', 'General'].map((l) => (
                 <button
                   key={l}
+                  type="button"
                   onClick={() => setLevel(l as EssayLevel)}
                   className={`px-3 py-3 md:px-4 md:py-3 text-[10px] md:text-[11px] uppercase tracking-widest border transition-all duration-200 active:scale-95
                     ${level === l 
@@ -230,9 +231,20 @@ export default function App() {
           </div>
 
           <button 
-            disabled={isGenerating || !level || !title}
-            onClick={() => { setShowHistory(false); handleGenerate(); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
-            className="w-full py-5 bg-black text-white text-[11px] uppercase tracking-[0.3em] font-bold hover:opacity-90 disabled:opacity-30 disabled:cursor-not-allowed transition-all flex items-center justify-center gap-3 shadow-xl hover:translate-y-[-2px] active:translate-y-[0px] active:scale-[0.98]"
+            onClick={() => {
+              if (!level || !title) {
+                setErrorMessage('Please select an academic level and provide a title before generating.');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                return;
+              }
+              setShowHistory(false); 
+              handleGenerate(); 
+              window.scrollTo({ top: 0, behavior: 'smooth' }); 
+            }}
+            disabled={isGenerating}
+            className={`w-full py-5 bg-black text-white text-[11px] uppercase tracking-[0.3em] font-bold hover:opacity-90 transition-all flex items-center justify-center gap-3 shadow-xl active:scale-[0.95]
+              ${isGenerating ? 'opacity-70' : ''} 
+              ${(!level || !title) && !isGenerating ? 'opacity-60' : 'opacity-100'}`}
           >
             {isGenerating ? <Loader2 className="w-3 h-3 animate-spin"/> : null}
             {isGenerating ? 'Intelligence Drafting...' : 'Generate Essay'}
